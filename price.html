@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算商品总价</title>
+    <style type="text/css">
+        input{
+            margin:0;
+            padding:0;
+            width:100px;
+            height:50px;
+            border: none;
+        }
+    </style>
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Quan();
+            $('.minus').click(function(){
+                var input_element = $(this).next();
+                var price_element = input_element.next().next();
+                var total_element = price_element.next();
+                var init_num=parseInt(input_element.val());
+                if(init_num){
+                    $(this).next().val(init_num-1);
+                }
+                var price = price_element.val().slice(3, -1);
+                var now_num = $(this).next().val();
+                var total_price = total(parseFloat(price), parseFloat(now_num));
+                total_element.val('小计：'+total_price + '元');
+                Quan();
+                total_parce()
+            });
+            $('.plus').click(function(){
+                var Textval=parseInt($(this).prev().val());
+                $(this).prev().val(Textval+1);
+                var now_num=$(this).prev().val();
+                var price_element=$(this).next();
+                var price=price_element.val().slice(3, -1);
+                var total_element=$(price_element).next();
+                var total_price=total(parseFloat(price), parseFloat(now_num));
+                total_element.val('小计：'+total_price+'元')
+                Quan();
+                total_parce();
+            });
+
+            // 计算总价格
+            function total(a, b) {
+                    return a*b;
+            }
+            //计算商品件数
+//            function totalnum(){
+//                var inputarr=$('.Text');
+//                var totalnum=0;
+//                for(var i=0;i<totalarr.length;i++){
+//                    totalnum+=parseInt(inputarr[i].val())
+//                }
+//                return totalnum;
+//                console.log(inputarr[i].val());
+//            }
+//            function Quan(action) {
+//                var numArray = $(".Text");
+//                var sum = 0;
+//                for (var i=0;i<numArray.length;i++){
+//                    sum += parseInt($(numArray[i]).val());
+//                }
+//                $("#Quantity").val(sum);
+//            }
+            function Quan() {
+                var numArray = $(".Text");
+                var sum = 0;
+                $(numArray).each(function(){
+                    sum += parseInt($(this).val());
+                });
+                $("#Quantity").val(sum);
+                }
+            function total_parce(){
+                var pricearr=$(".amount");
+                var sum=0;
+                $(pricearr).each(function(){
+                    sum+=parseFloat($(this).val().slice(3,-1))
+                });
+                $("#Total").val(sum);
+            }
+        })
+    </script>
+</head>
+<body>
+<div class="box">
+    <button value="-" class="minus">-</button>
+    <input type="text" value="0" class="Text">
+    <button value="+" class="plus">+</button>
+    <input type="text" value="单价：12.5元" class="price">
+    <input type="text" value="小计：0元" class="amount"><br/>
+
+    <button value="-" class="minus">-</button>
+    <input type="text" value="0" class="Text">
+    <button value="+" class="plus">+</button>
+    <input type="text" value="单价：10.5元" class="price">
+    <input type="text" value="小计：0元" class="amount"><br/>
+
+    <button value="-" class="minus">-</button>
+    <input type="text" value="0" class="Text">
+    <button value="+" class="plus">+</button>
+    <input type="text" value="单价：8.5元" class="price">
+    <input type="text" value="小计：0元" class="amount"><br/>
+
+    <button value="-" class="minus">-</button>
+    <input type="text" value="0" class="Text">
+    <button value="+" class="plus">+</button>
+    <input type="text" value="单价：8元" class="price">
+    <input type="text" value="小计：0元" class="amount"><br/>
+
+    <button value="-" class="minus">-</button>
+    <input type="text" value="0" class="Text">
+    <button value="+" class="plus">+</button>
+    <input type="text" value="单价：14.5元" class="price">
+    <input type="text" value="小计：0元" class="amount"><br/>
+</div>
+
+商品共计：<input type="text" value="0" id="Quantity">件<br/>
+    共花费：<input type="text" value="0" id="Total">元<br/>
+    最贵的商品：<input type="text" value="0" id="Expensive">元
+</body>
+</html>

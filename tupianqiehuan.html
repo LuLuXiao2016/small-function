@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片播放</title>
+    <style type="text/css">
+        body {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .box {
+            margin: 0 auto;
+            padding: 0;
+            width: 500px;
+            height: 600px;
+        }
+
+        p {
+            margin: 0 auto;
+            padding: 0;
+            height: 50px;
+            width: 100%;
+        }
+
+        p button {
+            position: relative;
+            left: 150px;
+            margin: 10px;
+        }
+
+        #picture {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: 500px;
+            height: 500px;
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+            z-index: 0;
+        }
+
+        span {
+            position: absolute;
+            background-color: bisque;
+            width: 100%;
+            height: 30px;
+            bottom: 0;
+            z-index: 2;
+            text-align: center;
+        }
+    </style>
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js">
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var arr = [];
+            arr[0] = "picture/r_1.jpg";
+            arr[1] = "picture/r_2.jpg";
+            arr[2] = "picture/r_3.jpg";
+            arr[3] = "picture/r_4.jpg";
+            var i = 0;
+            var Tagclick = true;
+            var newarr = ['一', '二', '三', '四'];
+
+
+            $("#button1").click(function () {
+                $("#button2").css({"background-color": ""});
+                $("#button1").css({"background-color": "red"});
+                Tagclick = true;
+            });
+
+            $("#button2").click(function () {
+                $("#button1").css({"background-color": ""});
+                $("#button2").css({"background-color": "green"});
+
+                Tagclick = false;
+
+            });
+
+            $("#button4").click(function () {
+                if (i === 3) {
+                    if (Tagclick) {
+                        alert("这他妈已经是最后一张了，点你妹啊。。");
+                        return
+                    } else {
+                        i = -1;
+                    }
+                }
+                i++;
+                $("#picture").html("<img src='" + arr[i] + "'/>" + "<br/>" + "<span>这是第" + newarr[i] + "张图片</span>");
+
+            });
+            $("#button3").click(function () {
+
+                if (i === 0) {
+                    if (Tagclick) {
+                        alert("这他妈已经是第一张了，点你妹啊。。");
+                        return
+                    } else {
+                        i = 4;
+                    }
+                }
+                i--;
+                $("#picture").html("<img src='" + arr[i] + "'/>" + "<br>" + "<span>这是第" + newarr[i] + "张图片</span>");
+
+            });
+
+        });
+
+
+    </script>
+
+
+</head>
+<body>
+<div class="box">
+    <p class="Button_top">
+        <button id="button1">顺序播放</button>
+        <button id="button2">循环播放</button>
+    </p>
+    <div id="picture">
+        <img src="picture/r_1.jpg">
+        <span>这是第一张图片</span>
+    </div>
+    <p class="Button_bottom">
+        <button id="button3">上一张</button>
+        <button id="button4">下一张</button>
+    </p>
+
+</div>
+</body>
+</html>

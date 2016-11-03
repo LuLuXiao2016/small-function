@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对话框</title>
+    <style type="text/css">
+        #div1 {
+            position: relative;
+            margin: 5px auto;
+            padding: 0;
+            width: 400px;
+            height: 500px;
+            border: #68a3ff 5px solid;
+        }
+
+        #div2 {
+            margin: 0;
+            padding: 0;
+            height: 400px;
+            overflow: scroll;
+        }
+
+        #div3 input {
+
+            padding: 0;
+            height: 20px;
+            width: 220px;
+            margin-bottom: 0;
+        }
+
+        #div3 button {
+            width: 50px;
+            height: 30px;
+            float: right;
+        }
+
+        #div3 a {
+            margin: 30px;
+            width: 50px;
+            height: 50px;
+            float: left;
+            overflow: hidden;
+        }
+        p{
+            position: relative;
+            word-break: break-all;
+            word-wrap: break-word;
+            overflow:hidden;
+            margin:0 0 5px 0;
+        }
+        p img{
+            position: absolute;
+            top:0;
+        }
+        .left{
+            padding-left: 50px;
+        }
+        .right{
+            padding-right:50px;
+        }
+
+        .left  img{
+           left:0;
+        }
+        .right img{
+           right:0;
+        }
+        .left span{
+            float: left;
+            background-color: #be29ff;
+            padding: 5px;
+
+        }
+        .right span{
+            float: right;
+            background-color: aquamarine;
+            padding:5px;
+
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var oimg = document.getElementById("qq");
+            var obutton = document.getElementById("button");
+            var odiv2 = document.getElementById("div2");
+            var otext = document.getElementById("text");
+            var onoff = false;
+
+//            var oimg.src = "images/qq.png";
+            oimg.onclick = function () {
+                if (onoff) {
+                    oimg.src = "images/n_1.png";
+                    onoff = false;
+                } else {
+                    oimg.src = "images/n_2.png";
+                    onoff=true;
+            }
+            };
+            obutton.onclick = function () {
+                var pos="left";
+                if(onoff){
+                    pos="left"
+                }else {
+                    pos="right"
+                }
+                odiv2.innerHTML ='<p class="'+ pos +'">' +
+                        '<img src="' + oimg.src + '">' +
+                        '<span>' + otext.value + '</span>' +
+                        '</p>' +
+                        odiv2.innerHTML;
+                otext.value='';
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">
+
+    </div>
+    <hr style="height: 1px;margin: 0;padding: 0; background-color: darkgray;color:red;">
+
+    <div id="div3">
+        <img id="qq" src="images/qq.png">
+        <input type="text" id="text">
+        <button id="button">发送</button>
+    </div>
+</div>
+</body>
+</html>

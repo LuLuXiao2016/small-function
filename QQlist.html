@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QQ列表</title>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            margin:0;
+            padding:0;
+            width:500px;
+            height:700px;
+            background-color: #f0eb7a;
+        }
+        span{
+            width:0;
+            height:0;
+            font-size: 0;
+            line-height: 0;
+            overflow: hidden;
+            border-top:5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid darkslategrey;
+        }
+        ul{
+            list-style-type: none;
+        }
+
+
+    </style>
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js">
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var oh4=document.getElementsByTagName('h4');
+            $(oh4).click(function(){
+                switch(this) {
+                    case oh4[0]:$('span').css('transform','rotate(90deg)');
+                        $('.Myfriend').toggle();
+                        break;
+                    case oh4[1]:$('.Enfriend').toggle();
+                        break;
+                    case oh4[2]:$('.Nofriend').toggle();
+                        break;
+                }
+            })
+
+        })
+    </script>
+</head>
+<body>
+<div class="box">
+<ul>
+    <h4><span>' '</span> 我的好友</h4>
+    <ul class="Myfriend" style="display: none">
+        <li>
+            张三
+        </li>
+        <li>
+            张三
+        </li>
+        <li>
+            张三
+        </li>
+        <li>
+            张三
+        </li>
+    </ul>
+
+</ul>
+<ul>
+    <h4><span>' '</span> 企业好友</h4>
+    <ul  class="Enfriend" style="display: none">
+        <li>
+            李四
+        </li>
+        <li>
+            李四
+        </li>
+        <li>
+            李四
+        </li>
+        <li>
+            李四
+        </li>
+    </ul>
+
+</ul>
+<ul>
+    <h4><span>' '</span> 黑名单</h4>
+    <ul  class="Nofriend" style="display: none">
+        <li>
+            王五
+        </li>
+        <li>
+            王五
+        </li>
+        <li>
+            王五
+        </li>
+        <li>
+            王五
+        </li>
+    </ul>
+
+</ul>
+</div>
+
+</body>
+</html>

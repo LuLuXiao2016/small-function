@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>石头剪刀布游戏</title>
+    <style type="text/css">
+        *{
+            margin:0 auto;
+            padding:0;
+        }
+        .top{
+            width:200px;
+            height: 180px;
+            border: #be29ff 1px solid;
+            background-color: bisque;
+            margin: 18px auto;
+        }
+        .top p{
+            font-size: 20px;
+        }
+        .top input{
+            width: 50px;
+            height:20px;
+            margin:8px;
+            z-index: 2;
+        }
+        #mine{
+            width:80px;
+            height:15px;
+            right:5px;
+        }
+        .middle{
+            width:200px;
+            height: 80px;
+            margin:5px auto;
+            border:#be29ff 1px solid;
+            background-color: bisque;
+            font-size:18px;
+        }
+        .bottom {
+            width: 200px;
+            height: 80px;
+            border: #be29ff 1px solid;
+            background-color: bisque;
+            margin: 20px auto;
+        }
+        #computer{
+            width:80px;
+            height:15px;
+        }
+
+        #bottom{
+            width:80px;
+            height:15px;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            var stone=document.getElementById('stone');
+            var cloth=document.getElementById('cloth');
+            var cut=document.getElementById('cut');
+            var mine=document.getElementById('mine');
+            var computer=document.getElementById('computer');
+            var bottom=document.getElementById('bottom');
+            var get=document.getElementById('get');
+
+
+            //点击按钮时，按钮的值被赋值为mine的值
+            function click(){
+                mine.value=this.value
+            }
+            stone.onclick=click;
+            cloth.onclick=click;
+            cut.onclick=click;
+
+            //电脑随机产生1~3的数字
+            get.onclick=function() {
+                var num=Math.floor(Math.random()*3+1);
+                if (num===1){
+                    computer.value="石头";
+                }else if (num===2){
+                    computer.value="布";
+                }else{
+                    computer.value="剪刀";
+                }
+
+
+                if (mine.value===computer.value){
+                    bottom.innerHTML(bottom.value="平局");
+                }else if(mine.value==="石头"){
+                    computer.value==="剪刀"? bottom.value="你赢了":bottom.value="你输了";
+                }else if(mine.value==="布"){
+                    computer.value==="石头"? bottom.value="你赢了":bottom.value="你输了";
+                }else if(mine.value==="剪刀"){
+                    alert(computer.value==="布"? bottom.value="你赢了":bottom.value="你输了");
+                }
+
+                mine.value="";
+                computer.value="";
+
+            }
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div class="top" >
+    <p>你出什么?<input type="text" value="" id="mine"/></p><br/>
+    <input type="radio" name="item" value="石头" id="stone" checked>石头<br/>
+    <input type="radio" name="item" value="布" id="cloth">布<br/>
+    <input type="radio" name="item" value="剪刀" id="cut">剪刀
+
+</div>
+<div class="middle">
+    <p>电脑出？</p><br/>
+    <input type="text" value="" id="computer"/><button id="get">获取</button>
+</div>
+<div class="bottom">
+    <input type="text" value="" id="bottom"/>
+</div>
+
+</body>
+</html>
